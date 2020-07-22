@@ -1,0 +1,26 @@
+name: 'Determine version'
+description: 'Determine current and latest version based on branches and tags'
+
+inputs:
+  ref:
+    description: Git reference
+    required: true
+
+  prefix:
+    description: Version prefix
+    default: v
+
+outputs:
+  major_current:
+    description: Current major version
+
+  major_latest:
+    description: Latest major version
+
+runs:
+  using: docker
+  image: Dockerfile
+  args:
+    - ${{ inputs.ref }}
+    - ${{ inputs.prefix }}
+
